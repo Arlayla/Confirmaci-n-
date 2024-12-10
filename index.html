@@ -6,27 +6,31 @@
     <title>Formulario para WhatsApp</title>
 </head>
 <body>
-    <h2>Confirma tu asistencia</h2>
-    <form id="whatsappForm">
-        <label for="name">Nombre:</label><br>
+    <h1>Confirmación de Asistencia</h1>
+    <p>Por favor, llena los siguientes campos para confirmar tu asistencia:</p>
+    <form id="whatsapp-form" onsubmit="sendMessage(event)">
+        <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required><br><br>
 
-        <label for="guests">Cantidad de invitados:</label><br>
+        <label for="guests">Número de invitados:</label>
         <input type="number" id="guests" name="guests" required><br><br>
 
-        <button type="button" onclick="sendToWhatsApp()">Enviar</button>
+        <button type="submit">Enviar</button>
     </form>
 
     <script>
-        function sendToWhatsApp() {
+        function sendMessage(event) {
+            event.preventDefault();
             const name = document.getElementById('name').value;
             const guests = document.getElementById('guests').value;
 
-            const message = `Hola, mi nombre es: ${name}`
-            const message = `Cantidad de invitados: ${guests}`;
-            const phoneNumber = "527341210197"; // Tu número de WhatsApp
+            // Mensaje con renglones separados
+            const message = `Hola, mi nombre es ${name}%0A` + 
+                            `Asistiré con ${guests} invitado(s).`;
+            const phone = "527341210197"; // Cambia este número por el tuyo
+            const whatsappURL = `https://wa.me/${phone}?text=${message}`;
 
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            window.open(whatsappURL, '_blank');
         }
     </script>
 </body>
