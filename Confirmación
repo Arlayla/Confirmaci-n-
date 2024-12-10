@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario para WhatsApp</title>
+</head>
+<body>
+    <h2>Confirma tu asistencia</h2>
+    <form id="whatsappForm">
+        <label for="name">Nombre:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="guests">Cantidad de invitados:</label><br>
+        <input type="number" id="guests" name="guests" required><br><br>
+
+        <button type="button" onclick="sendToWhatsApp()">Enviar</button>
+    </form>
+
+    <script>
+        function sendToWhatsApp() {
+            const name = document.getElementById('name').value;
+            const guests = document.getElementById('guests').value;
+
+            const message = `Hola, mi nombre es: ${name}%0ACantidad de invitados: ${guests}`;
+            const phoneNumber = "527341210197"; // Tu número de WhatsApp
+
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
